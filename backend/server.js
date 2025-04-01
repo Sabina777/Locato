@@ -1,11 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
-
+const { sequelize, connectDB } = require("./config/db"); 
 // Initialize environment variables
 dotenv.config();
 
 // Create an Express app
 const app = express();
+
+// Connect to database
+connectDB();
 
 // Basic route
 app.get('/', (req, res) => {
