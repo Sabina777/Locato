@@ -6,12 +6,15 @@ const { sequelize, connectDB } = require("./config/db");
 const storeRoutes = require('./routes/storeRoute');
 const reviewRoutes = require('./routes/reviewRoute');
 const userRoutes = require('./routes/userRoute');
+const cors = require('cors'); 
 
 // Initialize environment variables
 dotenv.config();
 
 // Create an Express app
 const app = express();
+
+app.use(cors()); // Allow all origins by default
 
 // Connect to database
 connectDB();
