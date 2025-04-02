@@ -1,18 +1,30 @@
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  const Store = sequelize.define("Store", {
-    name: { type: DataTypes.STRING, allowNull: false },
-    address: { type: DataTypes.STRING, allowNull: false },
-    latitude: { type: DataTypes.FLOAT, allowNull: false },
-    longitude: { type: DataTypes.FLOAT, allowNull: false },
-    category: { type: DataTypes.STRING },
-    phone: { type: DataTypes.STRING },
-    website: { type: DataTypes.STRING },
-    opening_hours: { type: DataTypes.JSONB },
+  class Store extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  Store.init({
+    name: DataTypes.STRING,
+    address: DataTypes.STRING,
+    latitude: DataTypes.FLOAT,
+    longitude: DataTypes.FLOAT,
+    category: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    website: DataTypes.STRING,
+    opening_hours: DataTypes.JSONB
+  }, {
+    sequelize,
+    modelName: 'Store',
   });
-
-  Store.associate = (models) => {
-    Store.hasMany(models.Review, { foreignKey: "store_id", onDelete: "CASCADE" });
-  };
-
   return Store;
 };
